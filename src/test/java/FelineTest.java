@@ -1,40 +1,42 @@
 package com.example;
 
 import org.junit.Test;
-import java.util.Arrays;
-import java.util.List;
-import static org.junit.Assert.*;
+import org.junit.Assert;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.mockito.Spy;
+import org.mockito.junit.MockitoJUnitRunner;
 
 
+@RunWith(MockitoJUnitRunner.class)
 public class FelineTest {
 
-    // Проверяем, что возвращается верный список
+    @Spy
+    Feline feline = new Feline();
+
+
     @Test
-    public void eatMeat_Feline_True() throws Exception {
-        Feline feline = new Feline();
-        List<String> expectedGetFood = Arrays.asList("Животные", "Птицы", "Рыба");
-        List<String> actualGetFood = feline.eatMeat();
-        assertEquals("Список еды не соответствует Кошачьим = Хищники", expectedGetFood, actualGetFood);
+    public void predatorCallsGetFood() throws Exception {
+        feline.eatMeat();
+        Mockito.verify(feline, Mockito.times(1)).getFood("Хищник");
     }
 
 
-    // Проверяем, что возвращает верное значение
+
     @Test
-    public void getFamily_Feline_True() {
-        Feline feline = new Feline();
-        String expectedGetFamily = "Кошачьи";
-        String actualGetFamily = feline.getFamily();
-        assertEquals("Семейство должно быть Кошачьи", expectedGetFamily, actualGetFamily);
+    public void checkGetFamilyReturnCorrect() {
+        Assert.assertEquals("Кошачьи", feline.getFamily());
     }
 
 
-    // Проверяем, что возвращает верное значение котят = 1
+
     @Test
-    public void getKittens_OneKitten_True() {
-        Feline feline = new Feline();
-        int expectedGetKittens = 1; // ожидается получить котят
-        int actualGetKittens = feline.getKittens();
-        assertEquals("Кошачьи должны приносить котят", expectedGetKittens, actualGetKittens);
+    public void getKittensWithParameter() {
+        Assert.assertEquals(5, feline.getKittens(5));
     }
 
+    @Test
+    public void getKittensWithoutParameters() {
+        Assert.assertEquals(1, feline.getKittens());
+    }
 }

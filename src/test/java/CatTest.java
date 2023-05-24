@@ -9,34 +9,31 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 
-@RunWith(MockitoJUnitRunner.class) // запустили этот класс с Mockito
+@RunWith(MockitoJUnitRunner.class)
 public class CatTest {
 
-    @Mock // создали мок
+    @Mock
     Feline feline;
 
-    // Проверяем, что возвращает верное значение
     @Test
-    public void getSound_Meow_True() {
+    public void getSoundMeowTrue() {
         Cat cat = new Cat(feline);
-        String expectedGetSound = "Мяу"; // ожидаемый звук
-        String actualGetSound = cat.getSound();
-        assertEquals("Кошка должна мяукать", expectedGetSound, actualGetSound); // метод assertEquals проверяет, что два значения равны
+        assertEquals("Мяу", cat.getSound());
     }
 
 
-    // Проверяем, что метод срабатывает
+
     @Test
-    public void getFood_Call_Eat_Meat() throws Exception {
+    public void getFoodCallEatMeat() throws Exception {
         Cat cat = new Cat(feline);
         cat.getFood();
         Mockito.verify(feline).eatMeat();
     }
 
 
-    // Проверяем, что возвращается верный список
+
     @Test
-    public void getFood_Return_Feline_List() throws Exception { // throws показывает, что в коде может быть исключение Exception
+    public void getFoodReturnFelineList() throws Exception {
         List<String> felineFood = List.of("Животные", "Птицы", "Рыба");
         Feline feline = new Feline();
         Cat cat = new Cat(feline);
