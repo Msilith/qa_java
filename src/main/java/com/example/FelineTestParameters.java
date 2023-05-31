@@ -1,9 +1,10 @@
-public class FelineTestParameters {
-    package com.example;
+package com.example;
+
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runners.Parameterized;
 import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
     @RunWith(Parameterized.class)
     public class FelineTestParameters {
         private final int kittensCount;
@@ -25,4 +26,4 @@ import org.junit.runner.RunWith;
                 Assert.assertEquals(kittensCount, actualGetKittens);
             }
         }
-}
+
