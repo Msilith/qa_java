@@ -44,7 +44,7 @@ public class LionTest {
         boolean actualHasMane = lion.doesHaveMane();
         assertEquals("У львицы нет гривы", expectedHasMane, actualHasMane);
     }
-
+// Girls power
 
     @Test
     public void getFoodPredatorCalls() throws Exception {
