@@ -37,6 +37,14 @@ public class LionTest {
         assertEquals("У льва должна быть грива", expectedHasMane, actualHasMane);
     }
 
+    @Test
+    public void doesHaveManeLionIsFemaleTrue() throws Exception {
+        Lion lion = new Lion("Самка", feline);
+        boolean expectedHasMane = false;
+        boolean actualHasMane = lion.doesHaveMane();
+        assertEquals("У львицы нет гривы", expectedHasMane, actualHasMane);
+    }
+
 
     @Test
     public void getFoodPredatorCalls() throws Exception {
@@ -59,7 +67,7 @@ public class LionTest {
     @Test
     public void lionCheckForSexOfAnimal() {
         String exceptionExpectedMessage = "Используйте допустимые значения пола животного - самец или самка";
-        //Exception trowException = Assert.assertThrows(Exception.class,() -> new Lion("Неизвестно", feline));
+
         Exception trowException = Assert.assertThrows(Exception.class,() -> new Lion("Неизвестно", feline));
         Assert.assertEquals(trowException.getMessage(), exceptionExpectedMessage);
     }
